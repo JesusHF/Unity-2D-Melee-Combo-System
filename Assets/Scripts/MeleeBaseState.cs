@@ -27,7 +27,7 @@ public abstract class MeleeBaseState : State
         base.OnEnter(_stateMachine);
         _animator = GetComponent<Animator>();
         _collidersDamaged = new List<Collider2D>();
-        _hitCollider = GetComponent<ComboCharacter>().hitbox;
+        _hitCollider = GetComponent<ComboCharacter>().Hitbox;
         _hitEffectPrefab = GetComponent<ComboCharacter>().Hiteffect;
     }
 

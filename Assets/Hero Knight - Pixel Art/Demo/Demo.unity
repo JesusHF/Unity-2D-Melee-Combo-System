@@ -1444,7 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b56deda9fd8394ba703d82ca4ac424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitbox: {fileID: 737065325}
+  Hitbox: {fileID: 737065325}
   Hiteffect: {fileID: 1518655715659774, guid: 7d91db3260583a04884fd1d5b635bb70, type: 3}
 --- !u!4 &3161818909420409470
 Transform:

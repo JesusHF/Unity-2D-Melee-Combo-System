@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ComboCharacter : MonoBehaviour
 {
     private StateMachine _meleeStateMachine;
 
-    [SerializeField] public Collider2D hitbox;
+    [SerializeField] public Collider2D Hitbox;
     [SerializeField] public GameObject Hiteffect;
 
     void Start()

@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class ComboCharacter : MonoBehaviour
 {
-
-    private StateMachine meleeStateMachine;
+    private StateMachine _meleeStateMachine;
 
     [SerializeField] public Collider2D hitbox;
     [SerializeField] public GameObject Hiteffect;
 
-    // Start is called before the first frame update
     void Start()
     {
-        meleeStateMachine = GetComponent<StateMachine>();
+        _meleeStateMachine = GetComponent<StateMachine>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && meleeStateMachine.CurrentState.GetType() == typeof(IdleCombatState))
+        if (Input.GetMouseButton(0) && _meleeStateMachine.CurrentState.GetType() == typeof(IdleCombatState))
         {
-            meleeStateMachine.SetNextState(new GroundEntryState());
+            _meleeStateMachine.SetNextState(new GroundEntryState());
         }
     }
 }

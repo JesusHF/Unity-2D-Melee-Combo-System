@@ -2,32 +2,31 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    public string customName;
-
-    private State mainStateType;
-
     public State CurrentState { get; private set; }
-    private State nextState;
+    public string CustomName;
 
-    // Update is called once per frame
+    private State _mainStateType;
+    private State _nextState;
+
+    private void Awake()
+    {
+        SetNextStateToMain();
+    }
+
     void Update()
     {
-        if (nextState != null)
+        if (_nextState != null)
         {
-            SetState(nextState);
+            SetState(_nextState);
         }
 
-        if (CurrentState != null)
-            CurrentState.OnUpdate();
+        CurrentState?.OnUpdate();
     }
 
     private void SetState(State _newState)
     {
-        nextState = null;
-        if (CurrentState != null)
-        {
-            CurrentState.OnExit();
-        }
+        _nextState = null;
+        CurrentState?.OnExit();
         CurrentState = _newState;
         CurrentState.OnEnter(this);
     }
@@ -36,41 +35,32 @@ public class StateMachine : MonoBehaviour
     {
         if (_newState != null)
         {
-            nextState = _newState;
+            _nextState = _newState;
         }
     }
 
     private void LateUpdate()
     {
-        if (CurrentState != null)
-            CurrentState.OnLateUpdate();
+        CurrentState?.OnLateUpdate();
     }
 
     private void FixedUpdate()
     {
-        if (CurrentState != null)
-            CurrentState.OnFixedUpdate();
+        CurrentState?.OnFixedUpdate();
     }
 
     public void SetNextStateToMain()
     {
-        nextState = mainStateType;
+        _nextState = _mainStateType;
     }
-
-    private void Awake()
-    {
-        SetNextStateToMain();
-
-    }
-
 
     private void OnValidate()
     {
-        if (mainStateType == null)
+        if (_mainStateType == null)
         {
-            if (customName == "Combat")
+            if (CustomName == "Combat")
             {
-                mainStateType = new IdleCombatState();
+                _mainStateType = new IdleCombatState();
             }
         }
     }

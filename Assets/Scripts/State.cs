@@ -2,36 +2,33 @@ using UnityEngine;
 
 public abstract class State
 {
-    protected float time { get; set; }
-    protected float fixedtime { get; set; }
-    protected float latetime { get; set; }
+    public StateMachine StateMachine { get; private set; }
 
-    public StateMachine stateMachine;
+    protected float _time { get; set; }
+    protected float _fixedtime { get; set; }
+    protected float _latetime { get; set; }
 
     public virtual void OnEnter(StateMachine _stateMachine)
     {
-        stateMachine = _stateMachine;
+        StateMachine = _stateMachine;
     }
-
 
     public virtual void OnUpdate()
     {
-        time += Time.deltaTime;
+        _time += Time.deltaTime;
     }
 
     public virtual void OnFixedUpdate()
     {
-        fixedtime += Time.deltaTime;
+        _fixedtime += Time.deltaTime;
     }
+
     public virtual void OnLateUpdate()
     {
-        latetime += Time.deltaTime;
+        _latetime += Time.deltaTime;
     }
 
-    public virtual void OnExit()
-    {
-
-    }
+    public virtual void OnExit() { }
 
     #region Passthrough Methods
 
@@ -49,20 +46,20 @@ public abstract class State
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    protected T GetComponent<T>() where T : Component { return stateMachine.GetComponent<T>(); }
+    protected T GetComponent<T>() where T : Component { return StateMachine.GetComponent<T>(); }
 
     /// <summary>
     /// Returns the component of Type <paramref name="type"/> if the game object has one attached, null if it doesn't.
     /// </summary>
     /// <param name="type">The type of Component to retrieve.</param>
     /// <returns></returns>
-    protected Component GetComponent(System.Type type) { return stateMachine.GetComponent(type); }
+    protected Component GetComponent(System.Type type) { return StateMachine.GetComponent(type); }
 
     /// <summary>
     /// Returns the component with name <paramref name="type"/> if the game object has one attached, null if it doesn't.
     /// </summary>
     /// <param name="type">The type of Component to retrieve.</param>
     /// <returns></returns>
-    protected Component GetComponent(string type) { return stateMachine.GetComponent(type); }
+    protected Component GetComponent(string type) { return StateMachine.GetComponent(type); }
     #endregion
 }

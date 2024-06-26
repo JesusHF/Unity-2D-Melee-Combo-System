@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundComboState : MeleeBaseState
@@ -9,25 +7,25 @@ public class GroundComboState : MeleeBaseState
         base.OnEnter(_stateMachine);
 
         //Attack
-        attackIndex = 2;
-        duration = 0.5f;
-        animator.SetTrigger("Attack" + attackIndex);
-        Debug.Log("Player Attack " + attackIndex + " Fired!");
+        _attackIndex = 2;
+        Duration = 0.5f;
+        _animator.SetTrigger("Attack" + _attackIndex);
+        Debug.Log("Player Attack " + _attackIndex + " Fired!");
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
 
-        if (fixedtime >= duration)
+        if (_fixedtime >= Duration)
         {
-            if (shouldCombo)
+            if (_shouldCombo)
             {
-                stateMachine.SetNextState(new GroundFinisherState());
+                StateMachine.SetNextState(new GroundFinisherState());
             }
             else
             {
-                stateMachine.SetNextStateToMain();
+                StateMachine.SetNextStateToMain();
             }
         }
     }

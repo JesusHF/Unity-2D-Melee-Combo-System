@@ -13,7 +13,7 @@ public class StateMachine : MonoBehaviour
         SetNextStateToMain();
     }
 
-    void Update()
+    private void Update()
     {
         if (_nextState != null)
         {

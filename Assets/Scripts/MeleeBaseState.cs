@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeBaseState : State
+public abstract class MeleeBaseState : State
 {
     // How long this state should be active for before moving on
-    public float Duration;
+    protected float _duration;
     // Cached animator component
     protected Animator _animator;
     // bool to check whether or not the next attack in the sequence should be played or not

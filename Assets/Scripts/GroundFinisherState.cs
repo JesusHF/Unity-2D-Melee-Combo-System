@@ -8,16 +8,15 @@ public class GroundFinisherState : MeleeBaseState
 
         //Attack
         _attackIndex = 3;
-        Duration = 0.5f;
+        _duration = 0.5f;
         _animator.SetTrigger("Attack" + _attackIndex);
-        Debug.Log("Player Attack " + _attackIndex + " Fired!");
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
 
-        if (_fixedtime >= Duration)
+        if (_fixedtime >= _duration)
         {
              StateMachine.SetNextStateToMain();
         }

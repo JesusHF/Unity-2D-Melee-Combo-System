@@ -4,29 +4,21 @@ public abstract class State
 {
     public StateMachine StateMachine { get; private set; }
 
-    protected float _time { get; set; }
     protected float _fixedtime { get; set; }
-    protected float _latetime { get; set; }
 
     public virtual void OnEnter(StateMachine stateMachine)
     {
         StateMachine = stateMachine;
     }
 
-    public virtual void OnUpdate()
-    {
-        _time += Time.deltaTime;
-    }
+    public virtual void OnUpdate() { }
 
     public virtual void OnFixedUpdate()
     {
         _fixedtime += Time.deltaTime;
     }
 
-    public virtual void OnLateUpdate()
-    {
-        _latetime += Time.deltaTime;
-    }
+    public virtual void OnLateUpdate() { }
 
     public virtual void OnExit() { }
 

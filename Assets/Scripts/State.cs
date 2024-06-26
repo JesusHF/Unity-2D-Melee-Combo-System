@@ -8,9 +8,9 @@ public abstract class State
     protected float _fixedtime { get; set; }
     protected float _latetime { get; set; }
 
-    public virtual void OnEnter(StateMachine _stateMachine)
+    public virtual void OnEnter(StateMachine stateMachine)
     {
-        StateMachine = _stateMachine;
+        StateMachine = stateMachine;
     }
 
     public virtual void OnUpdate()

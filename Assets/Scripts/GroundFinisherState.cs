@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class GroundFinisherState : MeleeBaseState
 {
-    public override void OnEnter(StateMachine _stateMachine)
+    public override void OnEnter(StateMachine stateMachine)
     {
-        base.OnEnter(_stateMachine);
+        base.OnEnter(stateMachine);
 
         //Attack
         _attackIndex = 3;

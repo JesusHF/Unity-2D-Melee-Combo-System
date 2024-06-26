@@ -3,7 +3,7 @@ using UnityEngine;
 public class StateMachine : MonoBehaviour
 {
     public State CurrentState { get; private set; }
-    public string CustomName;
+    [SerializeField] private string _customName;
 
     private State _mainStateType;
     private State _nextState;
@@ -23,22 +23,6 @@ public class StateMachine : MonoBehaviour
         CurrentState?.OnUpdate();
     }
 
-    private void SetState(State _newState)
-    {
-        _nextState = null;
-        CurrentState?.OnExit();
-        CurrentState = _newState;
-        CurrentState.OnEnter(this);
-    }
-
-    public void SetNextState(State _newState)
-    {
-        if (_newState != null)
-        {
-            _nextState = _newState;
-        }
-    }
-
     private void LateUpdate()
     {
         CurrentState?.OnLateUpdate();
@@ -49,19 +33,35 @@ public class StateMachine : MonoBehaviour
         CurrentState?.OnFixedUpdate();
     }
 
-    public void SetNextStateToMain()
-    {
-        _nextState = _mainStateType;
-    }
-
     private void OnValidate()
     {
         if (_mainStateType == null)
         {
-            if (CustomName == "Combat")
+            if (_customName == "Combat")
             {
                 _mainStateType = new IdleCombatState();
             }
         }
+    }
+
+    private void SetState(State newState)
+    {
+        _nextState = null;
+        CurrentState?.OnExit();
+        CurrentState = newState;
+        CurrentState.OnEnter(this);
+    }
+
+    public void SetNextState(State newState)
+    {
+        if (newState != null)
+        {
+            _nextState = newState;
+        }
+    }
+
+    public void SetNextStateToMain()
+    {
+        _nextState = _mainStateType;
     }
 }

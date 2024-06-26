@@ -4,27 +4,19 @@ using UnityEngine;
 
 public abstract class MeleeBaseState : State
 {
-    // How long this state should be active for before moving on
     protected float _duration;
-    // Cached animator component
-    protected Animator _animator;
-    // bool to check whether or not the next attack in the sequence should be played or not
     protected bool _shouldCombo;
-    // The attack index in the sequence of attacks
     protected int _attackIndex;
-
-    // The cached hit collider component of this attack
+    protected Animator _animator;
     protected Collider2D _hitCollider;
-    // Cached already struck objects of said attack to avoid overlapping attacks on same target
-    private List<Collider2D> _collidersDamaged;
-    // The Hit Effect to Spawn on the afflicted Enemy
-    private GameObject _hitEffectPrefab;
-    // Input buffer Timer
-    private float _attackPressedTimer = 0;
 
-    public override void OnEnter(StateMachine _stateMachine)
+    private List<Collider2D> _collidersDamaged;
+    private GameObject _hitEffectPrefab;
+    private float _attackPressedTimer = 0; // Input buffer Timer
+
+    public override void OnEnter(StateMachine stateMachine)
     {
-        base.OnEnter(_stateMachine);
+        base.OnEnter(stateMachine);
         _animator = GetComponent<Animator>();
         _collidersDamaged = new List<Collider2D>();
         _hitCollider = GetComponent<ComboCharacter>().Hitbox;

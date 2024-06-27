@@ -2,13 +2,12 @@ using UnityEngine;
 
 public abstract class State
 {
-    public StateMachine StateMachine { get; private set; }
-
-    protected float _fixedtime { get; set; }
+    protected StateMachine _stateMachine { get; private set; }
+    protected float _fixedtime { get; private set; }
 
     public virtual void OnEnter(StateMachine stateMachine)
     {
-        StateMachine = stateMachine;
+        _stateMachine = stateMachine;
     }
 
     public virtual void OnUpdate() { }
@@ -29,7 +28,7 @@ public abstract class State
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    protected T GetComponent<T>() where T : Component { return StateMachine.GetComponent<T>(); }
+    protected T GetComponent<T>() where T : Component { return _stateMachine.GetComponent<T>(); }
 
     #endregion
 }

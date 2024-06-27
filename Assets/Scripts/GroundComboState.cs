@@ -20,11 +20,11 @@ public class GroundComboState : MeleeBaseState
         {
             if (_shouldCombo)
             {
-                StateMachine.SetNextState(new GroundFinisherState());
+                _stateMachine.SetNextState(new GroundFinisherState());
             }
             else
             {
-                StateMachine.SetNextStateToMain();
+                _stateMachine.SetNextStateToMain();
             }
         }
     }

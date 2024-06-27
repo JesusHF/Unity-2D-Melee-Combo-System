@@ -20,11 +20,11 @@ public class GroundEntryState : MeleeBaseState
         {
             if (_shouldCombo)
             {
-                StateMachine.SetNextState(new GroundComboState());
+                _stateMachine.SetNextState(new GroundComboState());
             }
             else
             {
-                StateMachine.SetNextStateToMain();
+                _stateMachine.SetNextStateToMain();
             }
         }
     }

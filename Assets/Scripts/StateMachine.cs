@@ -1,15 +1,22 @@
 using UnityEngine;
+using UnityEngine.Assertions;
+
+public enum StateMachineType
+{
+    Player
+}
 
 public class StateMachine : MonoBehaviour
 {
     public State CurrentState { get; private set; }
-    [SerializeField] private string _customName;
+    [SerializeField] private StateMachineType _type;
 
-    private State _mainStateType;
-    private State _nextState;
+    private State _mainState = null;
+    private State _nextState = null;
 
     private void Awake()
     {
+        Validate();
         SetNextStateToMain();
     }
 
@@ -23,25 +30,26 @@ public class StateMachine : MonoBehaviour
         CurrentState?.OnUpdate();
     }
 
-    private void LateUpdate()
-    {
-        CurrentState?.OnLateUpdate();
-    }
-
     private void FixedUpdate()
     {
         CurrentState?.OnFixedUpdate();
     }
 
-    private void OnValidate()
+    private void LateUpdate()
     {
-        if (_mainStateType == null)
+        CurrentState?.OnLateUpdate();
+    }
+
+    private void Validate()
+    {
+        if (_mainState == null)
         {
-            if (_customName == "Combat")
+            if (_type == StateMachineType.Player)
             {
-                _mainStateType = new IdleCombatState();
+                _mainState = new IdleCombatState();
             }
         }
+        Assert.IsNotNull(_mainState);
     }
 
     private void SetState(State newState)
@@ -62,6 +70,6 @@ public class StateMachine : MonoBehaviour
 
     public void SetNextStateToMain()
     {
-        _nextState = _mainStateType;
+        _nextState = _mainState;
     }
 }

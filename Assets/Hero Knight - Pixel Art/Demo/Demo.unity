@@ -1431,7 +1431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4329b45174033774a9d7bd823fb5a4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _customName: Combat
+  _type: 0
 --- !u!114 &639942725589196331
 MonoBehaviour:
   m_ObjectHideFlags: 0
